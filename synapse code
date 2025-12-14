@@ -1,0 +1,12 @@
+./dmgcmd -DisableLocalFolderPathValidation
+
+
+CREATE VIEW dbo.vTransaction
+AS
+SELECT *
+FROM OPENROWSET(
+        BULK 'https://retailers123456.blob.core.windows.net/retail/bronze/transaction/dbo.transactions.parquet',
+        FORMAT = 'PARQUET'
+    ) AS rows;
+
+select * from dbo.vTransaction;
